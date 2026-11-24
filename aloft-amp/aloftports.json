@@ -1,0 +1,9 @@
+[
+    {
+        "Protocol": "Both",
+        "Port": 7790,
+        "Ref": "GamePort",
+        "Name": "Game Port",
+        "Description": "Port for game traffic (serverport)"
+    }
+]

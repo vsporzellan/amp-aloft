@@ -1,0 +1,149 @@
+[
+    {
+        "DisplayName": "Server Name",
+        "Category": "Aloft:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "Name shown in-game and in the lobby browser. Letters, digits, _ and - only, no spaces",
+        "Keywords": "",
+        "FieldName": "ServerName",
+        "InputType": "text",
+        "IsFlagArgument": false,
+        "ParamFieldName": "ServerName",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "AloftServer",
+        "EnumValues": {},
+        "Required": true
+    },
+    {
+        "DisplayName": "Max Players",
+        "Category": "Aloft:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "Maximum number of players (1-8)",
+        "Keywords": "",
+        "FieldName": "MaxPlayers",
+        "InputType": "number",
+        "IsFlagArgument": false,
+        "ParamFieldName": "MaxPlayers",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "8",
+        "EnumValues": {},
+        "MinValue": "1",
+        "MaxValue": "8"
+    },
+    {
+        "DisplayName": "Visible in Lobby Browser",
+        "Category": "Aloft:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "If disabled, the server can only be joined with the server code",
+        "Keywords": "",
+        "FieldName": "IsVisible",
+        "InputType": "checkbox",
+        "IsFlagArgument": false,
+        "ParamFieldName": "IsVisible",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "true",
+        "EnumValues": {
+            "False": "false",
+            "True": "true"
+        }
+    },
+    {
+        "DisplayName": "Private Islands",
+        "Category": "Aloft:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "Protects home island spawning",
+        "Keywords": "",
+        "FieldName": "PrivateIslands",
+        "InputType": "checkbox",
+        "IsFlagArgument": false,
+        "ParamFieldName": "PrivateIslands",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "false",
+        "EnumValues": {
+            "False": "false",
+            "True": "true"
+        }
+    },
+    {
+        "DisplayName": "Admin Steam IDs",
+        "Category": "Aloft:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "SteamID64 of in-game admins, separated by spaces or commas",
+        "Keywords": "",
+        "FieldName": "AdminIDs",
+        "InputType": "text",
+        "IsFlagArgument": false,
+        "ParamFieldName": "AdminIDs",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "",
+        "EnumValues": {}
+    },
+    {
+        "DisplayName": "World Name",
+        "Category": "Aloft:stadia_controller",
+        "Subcategory": "World:public:2",
+        "Description": "World to load. If it does not exist yet, it is created on the next start using the settings below. Letters, digits, _ and - only",
+        "Keywords": "",
+        "FieldName": "MapName",
+        "InputType": "text",
+        "IsFlagArgument": false,
+        "ParamFieldName": "MapName",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "AloftWorld",
+        "EnumValues": {},
+        "Required": true
+    },
+    {
+        "DisplayName": "Island Count",
+        "Category": "Aloft:stadia_controller",
+        "Subcategory": "World:public:2",
+        "Description": "Only used when a new world is created",
+        "Keywords": "",
+        "FieldName": "IslandCount",
+        "InputType": "enum",
+        "IsFlagArgument": false,
+        "ParamFieldName": "IslandCount",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "normal",
+        "EnumValues": {
+            "normal": "Normal",
+            "big": "Big",
+            "huge": "Huge"
+        }
+    },
+    {
+        "DisplayName": "Corruption",
+        "Category": "Aloft:stadia_controller",
+        "Subcategory": "World:public:2",
+        "Description": "Only used when a new world is created",
+        "Keywords": "",
+        "FieldName": "CorruptionCount",
+        "InputType": "enum",
+        "IsFlagArgument": false,
+        "ParamFieldName": "CorruptionCount",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "normal",
+        "EnumValues": {
+            "normal": "Normal",
+            "lots": "Lots",
+            "shrooms": "Shrooms"
+        }
+    },
+    {
+        "DisplayName": "Creative Mode",
+        "Category": "Aloft:stadia_controller",
+        "Subcategory": "World:public:2",
+        "Description": "Only used when a new world is created",
+        "Keywords": "",
+        "FieldName": "Creative",
+        "InputType": "checkbox",
+        "IsFlagArgument": false,
+        "ParamFieldName": "Creative",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "false",
+        "EnumValues": {
+            "False": "false",
+            "True": "true"
+        }
+    }
+]
