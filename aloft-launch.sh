@@ -46,15 +46,24 @@ if [[ -z "${DISPLAY:-}" ]]; then
         XVFB_PID=$!
         export DISPLAY=:99
         sleep 2
-        echo "[AMP] Virtuelles Display :99 gestartet."
+        if kill -0 "$XVFB_PID" 2>/dev/null; then
+            echo "[AMP] Virtuelles Display :99 gestartet."
+        else
+            echo "[AMP] WARNUNG: Xvfb ist sofort wieder beendet worden."
+            XVFB_PID=""
+        fi
     else
         echo "[AMP] WARNUNG: Xvfb nicht gefunden – Aloft startet ohne Display vermutlich nicht."
     fi
 fi
 
 PID=""
-cleanup_xvfb() { [[ -n "$XVFB_PID" ]] && kill "$XVFB_PID" 2>/dev/null; }
-trap cleanup_xvfb EXIT
+WATCH_PID=""
+cleanup() {
+    [[ -n "$WATCH_PID" ]] && kill "$WATCH_PID" 2>/dev/null
+    [[ -n "$XVFB_PID" ]] && kill "$XVFB_PID" 2>/dev/null
+}
+trap cleanup EXIT
 
 stop_server() {
     if [[ -n "$PID" ]] && kill -0 "$PID" 2>/dev/null; then
@@ -78,6 +87,8 @@ run_aloft() {
     wait "$PID"
     local rc=$?
     PID=""
+    sleep 1
+    echo "[AMP] Aloft beendet (Exit-Code $rc)."
     return $rc
 }
 
@@ -106,6 +117,7 @@ MARKER="$(mktemp)"
     done
     rm -f "$MARKER"
 ) &
+WATCH_PID=$!
 
 echo "[AMP] Lade Welt '${MAP}' als '${NAME}' (Port ${PORT}, max. ${PLAYERS} Spieler, sichtbar: ${VISIBLE}) ..."
 run_aloft server.log "load#${MAP}#" "servername#${NAME}#" "log#ERROR#" "isvisible#${VISIBLE}#" \
