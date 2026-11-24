@@ -37,7 +37,25 @@ SAVES="${WINEPREFIX:-$HOME/.wine}/drive_c/users/$(id -un)/AppData/LocalLow/Astro
 EXE="./Aloft.exe"
 [[ -f "$EXE" ]] || { echo "[AMP] FEHLER: Aloft.exe nicht gefunden. Erst 'Update' ausführen (Steam-Login nötig)."; exit 1; }
 
+# Unity braucht auch im Batchmode ein (unsichtbares) Fenster -> virtuelles Display
+XVFB_PID=""
+if [[ -z "${DISPLAY:-}" ]]; then
+    if command -v Xvfb >/dev/null 2>&1; then
+        rm -f /tmp/.X99-lock /tmp/.X11-unix/X99
+        Xvfb :99 -screen 0 1024x768x24 -nolisten tcp >/dev/null 2>&1 &
+        XVFB_PID=$!
+        export DISPLAY=:99
+        sleep 2
+        echo "[AMP] Virtuelles Display :99 gestartet."
+    else
+        echo "[AMP] WARNUNG: Xvfb nicht gefunden – Aloft startet ohne Display vermutlich nicht."
+    fi
+fi
+
 PID=""
+cleanup_xvfb() { [[ -n "$XVFB_PID" ]] && kill "$XVFB_PID" 2>/dev/null; }
+trap cleanup_xvfb EXIT
+
 stop_server() {
     if [[ -n "$PID" ]] && kill -0 "$PID" 2>/dev/null; then
         echo "[AMP] Stoppe Aloft ..."
